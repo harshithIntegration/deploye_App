@@ -42,14 +42,7 @@ class _ContactpageState extends State<Contactpage> {
                 ),
               ),
               child: Center(
-                child: Text(
-                  'Contact Us',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                
               ),
             ),
             Padding(

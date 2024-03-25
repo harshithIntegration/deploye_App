@@ -1,6 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:ono/forgotPassword.dart';
 import 'package:flutter/material.dart';
+import 'package:ono/login.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -193,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Navigator.pop(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ResetPasswordPage()),
+                              builder: (context) =>  LoginPage()),
                         );
                       }
                     },
@@ -201,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade900,
                       foregroundColor: Colors.white,
-                    ),
+                    ), 
                   ),
                 ),
               ],

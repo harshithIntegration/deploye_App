@@ -25,7 +25,17 @@ class _Committee1PageState extends State<Committee1Page> {
       'imagePath': 'assets/meghana.jpg',
     },
     {
-      'name': 'sanketh dani',
+      'name': 'Nisarga K N',
+      'designation': 'Front End developer',
+      'imagePath': 'assets/nis.jpg',
+    },
+    {
+      'name': 'Prathyusha R',
+      'designation': 'Full Stack developer',
+      'imagePath': 'assets/pra.jpg',
+    },
+    {
+      'name': 'sanket dani',
       'designation': 'Android developer',
       'imagePath': 'assets/sann.jfif',
     },

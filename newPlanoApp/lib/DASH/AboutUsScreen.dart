@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ono/DASH/dashboard.dart';
 
 class AboutUspage extends StatefulWidget {
   const AboutUspage({Key? key}) : super(key: key);
@@ -24,7 +25,10 @@ class _AboutUspageState extends State<AboutUspage> {
           icon: Icon(Icons.arrow_back),
           color: Colors.white,
           onPressed: () {
-            Navigator.of(context).pop();
+           Navigator.pop(
+      context,
+      MaterialPageRoute(builder: (context) => dashboard()),
+    );
           },
         ),
       ),
@@ -42,14 +46,7 @@ class _AboutUspageState extends State<AboutUspage> {
                 ),
               ),
               child: Center(
-                child: Text(
-                  'About Us',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                
               ),
             ),
             Padding(

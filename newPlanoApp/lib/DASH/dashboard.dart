@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ono/DASH/AboutUsScreen.dart';
 import 'package:ono/DASH/Speakers.dart';
+import 'package:ono/DASH/doc.dart';
 import 'package:ono/DASH/scanner.dart';
 import 'package:ono/committee.dart';
 import 'package:ono/committee1.dart';
 import 'package:ono/DASH/Contact.dart';
-import 'package:ono/DASH/Document.dart';
+
 import 'package:ono/DASH/Ebadge.dart';
 import 'package:ono/DASH/Feedback.dart';
 import 'package:ono/DASH/Mettings.dart';
@@ -92,17 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 150,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Colors.red.shade900,
-        ),
+        toolbarHeight: 80,
+        backgroundColor: Colors.transparent,
         title: Row(
           children: [
             Image.asset(
               'assets/icons/Quantum_Logo.png',
-              height: 70,
-              width: 70,
+              height: 40,
+              width: 40,
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8), // Add some space between the image and text
@@ -130,11 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 200,
                 width: 400,// Adjust the height as needed
                 child: Image.asset(
-                  'assets/blur.jpeg',
+                  'assets/old.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 35),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child:Container(
@@ -143,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount: 3,
-                      crossAxisSpacing: 30,
+                      crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
                       children:[
                         ItemDashboard(
@@ -151,89 +149,90 @@ class _MyHomePageState extends State<MyHomePage> {
                           iconData: CupertinoIcons.phone,
                           background: Colors.blueAccent,
                           onTap: AboutUspage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Committee',
                           iconData: CupertinoIcons.person_2_fill,
                           background: Colors.green,
                           onTap: Committee1Page(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Scanner',
                           iconData: CupertinoIcons.qrcode,
                           background: Colors.red,
                           onTap: Scannerpage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Speakers',
                           iconData: CupertinoIcons.person_3,
                           background: Colors.purple,
                           onTap: SpeakerPage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Venue',
                           iconData: CupertinoIcons.location_solid,
                           background: Colors.brown,
                           onTap: Venuepage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'MOM',
                           iconData: CupertinoIcons.time,
                           background: Colors.indigo,
                           onTap: Mompage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Exhibitors',
                           iconData: CupertinoIcons.person_alt,
                           background: Colors.black45,
                           onTap: ExhibitorsPage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Document',
                           iconData: CupertinoIcons.rectangle_fill_on_rectangle_fill,
                           background: Colors.deepPurpleAccent,
-                          onTap: Documentpage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          onTap: Docpage(),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Feedback',
                           iconData: CupertinoIcons.phone_badge_plus,
                           background: Colors.pinkAccent,
                           onTap: Feedbackpage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Contact Us',
                           iconData: CupertinoIcons.profile_circled,
                           background: Colors.deepOrange,
                           onTap: Contactpage(),
-                          titleTextStyle: TextStyle(fontSize: 11),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'E-Badge',
                           iconData: CupertinoIcons.app_badge_fill,
                           background: Colors.blueGrey,
                           onTap: Ebadgepage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                         ItemDashboard(
                           title: 'Meetings',
                           iconData: CupertinoIcons.person_2_alt,
                           background: Colors.yellow,
                           onTap: Mettingpage(),
-                          titleTextStyle: TextStyle(fontSize: 12),
+                          titleTextStyle: TextStyle(fontSize: 10),
                         ),
                       ],
                     ),
-                  )
-              )
+                  ),
+              ),
+              const SizedBox(height: 20),
             ]
         ),
       ),
