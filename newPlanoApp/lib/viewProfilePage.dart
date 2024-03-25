@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ono/DASH/dashboard.dart';
 import 'package:ono/editprofile.dart';
 import 'package:ono/user.dart';
 
@@ -11,6 +12,7 @@ class viewProfilePage extends StatefulWidget {
 
 class _viewProfilePageState extends State<viewProfilePage> {
   late Future<List<User>> futureUsers;
+  
 
   @override
   void initState() {
@@ -34,9 +36,12 @@ class _viewProfilePageState extends State<viewProfilePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+         onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const dashboard()));
+                },
         ),
       ),
       body: FutureBuilder<List<User>>(

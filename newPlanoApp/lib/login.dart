@@ -1,25 +1,16 @@
-import 'dart:convert';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ono/Admin/admin.dart';
+import 'package:ono/DASH/Ebadge.dart';
 import 'package:ono/signUp.dart';
 import 'package:ono/forgotPassword.dart';
+// import './DASH/Document.dart';
 
-class LoginCredentials {
-  final String userEmail;
-  final String userPassword;
+class User {
+  final String email;
+  final String password; // Include password for admin user authentication
 
-  LoginCredentials({
-    required this.userEmail,
-    required this.userPassword,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'userEmail': userEmail,
-      'userPassword': userPassword,
-    };
-  }
+  User({required this.email, required this.password});
 }
 
 class LoginPage extends StatefulWidget {
@@ -28,22 +19,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool passToggle = true;
 
-  // Method to save user authentication data
-  Future<void> saveUserData(String token) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
-  }
+  List<User> adminUsers = [
+    User(email: 'Admin987@gmail.com', password: 'admin123987'), // Admin user
+  ];
 
-  // Method to check if user is already logged in
-  Future<bool> isUserLoggedIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('token') != null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,23 +98,21 @@ class _LoginPageState extends State<LoginPage> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your password';
-                  } else if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
-                  }
+                  } 
                   return null;
                 },
               ),
-              const SizedBox(height: 8.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ResetPasswordPage()));
-                  print('Forgot Password pressed');
-                },
-                child: const Text('Forgot Password?'),
-              ),
+              const SizedBox(height: 20.0),
+              // TextButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const ResetPasswordPage()));
+              //     print('Forgot Password pressed');
+              //   },
+              //   child: const Text('Forgot Password?'),
+              // ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -139,33 +121,31 @@ class _LoginPageState extends State<LoginPage> {
                       print('userEmail: ${_emailController.text}');
                       print('userPassword: ${_passwordController.text}');
 
-                      LoginCredentials credentials = LoginCredentials(
-                        userEmail: _emailController.text,
-                        userPassword: _passwordController.text,
-                      );
-                      String jsonData = jsonEncode(credentials.toJson());
-                      print('JSON Data: $jsonData');
-                      http.post(
-                        Uri.parse("http://10.0.2.2:4040/userLogin"),
-                        headers: <String, String>{
-                          'Content-Type': 'application/json; charset=UTF-8',
-                        },
-                        body: jsonData,
-                      ).then((response) async {
-                        if (response.statusCode == 200) {
-                          var res = json.decode(response.body);
-                          debugPrint(res);
-                          debugPrint(response.body);
+                                      String email = _emailController.text;
+                  String password = _passwordController.text;
 
-                          await saveUserData(res['token']);
-                        } else {
+                  User? adminUser = adminUsers.firstWhereOrNull(
+                    (user) =>
+                        user.email == email && user.password == password,
+                  );
 
-                          print('Login failed');
-                        }
-                      }).catchError((error) {
+                  if (adminUser != null) {
+                    // Admin login
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Adminpage()),
+                    );
+                  } 
+                  else if (email.isNotEmpty && password.isNotEmpty) {
+                    // Non-admin user login
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Ebadgepage()),
+                    );
+                  } else {
+                    
+                  }
 
-                        print('Error: $error');
-                      });
                     }
                   },
                   child: Text('Login'),
